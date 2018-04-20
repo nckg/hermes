@@ -40,7 +40,7 @@ class ParseDocumentsCommand extends Command
      */
     public function handle()
     {
-        $files = collect(Storage::disk('files')->files())
+        collect(Storage::disk('files')->files())
             // Reject dot files
             ->reject(function ($item) {
                 return Str::endsWith($item, ['.DS_Store', '.gitignore']);

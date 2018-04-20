@@ -5,6 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 import { TableComponent, TableColumn } from 'vue-table-component';
+import Overview from './components/Overview';
 
 require('./bootstrap');
 
@@ -24,6 +25,7 @@ Vue.mixin({
 
 Vue.component('table-component', TableComponent);
 Vue.component('table-column', TableColumn);
+Vue.component('overview', Overview);
 
 const app = new Vue({
     el: '#app'

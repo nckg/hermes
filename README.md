@@ -7,11 +7,14 @@ I don't like paperwork. I hate searching for papers. This is an attempt to make 
 ## Todo
 
 * [x] Basic setup
+* [x] Mass export
+* [x] Delete file
 * [ ] Cleanup images with [Unpaper](https://www.flameeyes.eu/projects/unpaper)
-* [ ] Mass export
 * [ ] Don't expose files directly
-* [ ] Delete file
 * [ ] Edit tags, title, date
+* [x] Filter
+* [x] Logo
+* [x] Login styling
 
 ## Installation
 
@@ -80,6 +83,14 @@ composer test
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Screenshots
+
+![](./docs/login.jpg)
+
+![](./docs/overview.jpg)
+
+![](./docs/detail.jpg)
 
 ## Why Hermes?
 

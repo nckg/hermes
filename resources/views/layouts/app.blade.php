@@ -26,19 +26,22 @@
     </script>
 
 </head>
-<body class="font-source-sans antialiased leading-tight bg-grey-lighter">
-    <div id="app" class="min-h-screen flex flex-col min-w-md cloak-fade" v-cloak>
+<body class="font-source-sans antialiased leading-tight bg-grey-lighter @yield('bodyClass')">
+    <div id="app"
+         class="min-h-screen flex flex-col min-w-md cloak-fade"
+         v-cloak>
+
+        @auth
         <div class="flex bg-white border-b border-grey-light h-16 items-center mb-6 shadow">
             <div class="w-full max-w-screen-xl relative mx-auto px-6">
                 <div class="flex items-center -mx-6">
                     <div class="lg:w-1/4 xl:w-1/5 pl-6 pr-6 lg:pr-8">
                         <div class="flex items-center">
                             <a href="/" class="block font-black text-lg tracking-tight text-grey hover:text-grey-darker">
-                                {{ config("app.name") }}
+                                @svg("logo", "fill-current text-blue-dark w-24")
                             </a>
                         </div>
                     </div>
-                    @auth
                     <div class="lg:w-3/4 xl:w-4/5 pl-6 pr-6 lg:pr-8 flex justify-end">
                         <a href="{{ route('logout') }}"
                            class="text-grey hover:text-grey-darker"
@@ -50,10 +53,10 @@
                             {{ csrf_field() }}
                         </form>
                     </div>
-                    @endauth
                 </div>
             </div>
         </div>
+        @endauth
         <div class="flex">
             <div class="w-full max-w-screen-xl relative mx-auto px-6 mb-12">
                 @yield('content')

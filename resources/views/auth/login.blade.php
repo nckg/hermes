@@ -1,51 +1,48 @@
 @extends('layouts.app')
 
+@section('bodyClass', 'bg-blue-darkest')
+
 @section('content')
-<div class="flex items-center px-6 md:px-0">
-    <div class="w-full max-w-md md:mx-auto">
-        <div class="rounded shadow">
-            <div class="font-medium text-lg text-brand-darker bg-brand-lighter p-3 rounded-t">
-                Login
-            </div>
-            <div class="bg-white p-3 rounded-b">
-                <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                    {{ csrf_field() }}
+<div class="flex items-center px-6 md:px-0 h-screen">
+    <div class="w-full max-w-xs md:mx-auto">
+        <form class="form-horizontal"
+              method="POST"
+              action="{{ route('login') }}">
+            {{ csrf_field() }}
+            <div class="flex flex-col">
+                @svg("logo", "fill-current text-white w-32 mx-auto mb-6")
+                <input id="email"
+                       type="email"
+                       placeholder="E-mail"
+                       class="flex-grow p-4 border focus:outline-0 rounded-tl rounded-tr {{ $errors->has('email') ? 'border-red-dark' : 'border-grey-light' }}" name="email" value="{{ old('email') }}" required autofocus>
+                <input id="password"
+                       type="password"
+                       placeholder="Password"
+                       class="flex-grow p-4 focus:outline-0 rounded-bl rounded-br border {{ $errors->has('password') ? 'border-red-dark' : 'border-grey-light' }}" name="password" required>
 
-                    <div class="flex items-stretch mb-3">
-                        <label for="email" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">E-Mail Address</label>
-                        <div class="flex flex-col w-3/4">
-                            <input id="email" type="email" class="flex-grow h-8 px-2 border rounded {{ $errors->has('email') ? 'border-red-dark' : 'border-grey-light' }}" name="email" value="{{ old('email') }}" required autofocus>
-                            {!! $errors->first('email', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
-                        </div>
+                <div class="flex my-4">
+                    <div class="w-1/2">
+                        <button type="submit"
+                                class="transition block w-full bg-green rounded text-white px-4 py-3 text-center hover:bg-green-dark">
+                            Login
+                        </button>
                     </div>
-
-                    <div class="flex items-stretch mb-4">
-                        <label for="password" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Password</label>
-                        <div class="flex flex-col w-3/4">
-                            <input id="password" type="password" class="flex-grow h-8 px-2 rounded border {{ $errors->has('password') ? 'border-red-dark' : 'border-grey-light' }}" name="password" required>
-                            {!! $errors->first('password', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
-                        </div>
-                    </div>
-
-                    <div class="flex mb-4">
-                        <label class="w-3/4 ml-auto">
-                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> <span class="text-sm text-grey-dark"> Remember Me</span>
+                    <div class="w-1/2 ml-4 flex items-center">
+                        <label>
+                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> <span class="text-grey"> Remember Me</span>
                         </label>
                     </div>
+                </div>
 
-                    <div class="flex">
-                        <div class="w-3/4 ml-auto">
-                            <button type="submit" class="bg-brand hover:bg-brand-dark text-white text-sm font-semibold py-2 px-4 rounded mr-3">
-                                Login
-                            </button>
-                            <a class="no-underline hover:underline text-brand-dark text-sm" href="{{ route('password.request') }}">
-                                Forgot Your Password?
-                            </a>
-                        </div>
-                    </div>
-                </form>
+                <a class="no-underline hover:underline text-grey-dark mx-auto" href="{{ route('password.request') }}">
+                    Forgot Your Password?
+                </a>
+
             </div>
-        </div>
+
+
+
+        </form>
     </div>
 </div>
 @endsection

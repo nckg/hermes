@@ -20,7 +20,7 @@ class DocumentsController extends Controller
 
         return view('documents.index')->with([
             'models' => (new DocumentCollectionTransformer($models))->transform(),
-            'tags' => Tag::all()->sortBy('name'),
+            'tags' => Tag::all()->sortBy('name')->values(),
         ]);
     }
 

@@ -80,6 +80,87 @@ a {
     }
 }
 
+input[type="checkbox"],
+.checkbox input[type="checkbox"] {
+    @apply relative;
+    @apply border-0;
+    margin-bottom: -4px;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 18px;
+        margin-top: -2px;
+        margin-right: 5px;
+        @apply border-2 border-grey rounded transition;
+    }
+
+    &:checked:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 6px;
+        display: table;
+        width: 6px;
+        height: 12px;
+        border: 2px solid #fff;
+        border-top-width: 0;
+        border-left-width: 0;
+        transform: rotate(45deg);
+    }
+
+    &:checked:after {
+        @apply bg-blue border-blue;
+    }
+}
+
+
+[v-cloak] {
+    display: none !important;
+}
+
+.cloak-fade:not([v-cloak]) {
+    opacity: 0;
+    -webkit-animation-name: cloak-fade-in;
+    animation-name: cloak-fade-in;
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes cloak-fade-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-.1rem);
+        transform: translateY(-.1rem)
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes cloak-fade-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-.1rem);
+        transform: translateY(-.1rem)
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.
