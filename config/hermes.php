@@ -6,4 +6,5 @@ return [
      *
      */
     'pdftotext_bin' => env('PDFTOTEXT_BIN', '/usr/bin/pdftotext'),
+    'unpaper_bin' => env('UNPAPER_BIN', '/usr/bin/unpaper'),
 ];

@@ -1,0 +1,55 @@
+@-webkit-keyframes spinAround {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes spinAround {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+.button {
+    @apply .transition-m;
+    @apply .inline-block .rounded .p-4 .text-center .cursor-pointer;
+    @apply .bg-blue .relative .text-white .shadow-bottom-transparent;
+
+    &:hover {
+        @apply .shadow-bottom;
+    }
+
+    &.is-loading {
+        color: transparent !important;
+        pointer-events: none;
+    }
+
+    &.is-loading:after {
+        -webkit-animation: spinAround 500ms infinite linear;
+        animation: spinAround 500ms infinite linear;
+
+        @apply w-4 h-4 rounded-full;
+
+        border: 2px solid config('colors.white');
+        //border-radius: 290486px;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        content: "";
+        display: block;
+        //height: 1em;
+        //width: 1em;
+        position: absolute;
+        left: calc(~"50% - .5em");
+        top: calc(~"50% - .5em");
+    }
+}

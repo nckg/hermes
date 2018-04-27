@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { findIndex } from 'lodash';
 
 export default {
     props: ["tags"],
@@ -17,6 +18,16 @@ export default {
     },
 
     methods: {
+        toggleTag(tag) {
+            const index = findIndex(this.selectedTags, { id: tag.id });
+
+            if (index > -1) {
+                this.selectedTags.splice(index, 1);
+            } else {
+                this.selectedTags.push(tag);
+            }
+        },
+
         destroy() {
             axios({
                 method: 'delete',

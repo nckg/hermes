@@ -6,6 +6,7 @@
  */
 import { TableComponent, TableColumn } from 'vue-table-component';
 import Overview from './components/Overview';
+import Upload from './components/Upload';
 
 require('./bootstrap');
 
@@ -26,6 +27,7 @@ Vue.mixin({
 Vue.component('table-component', TableComponent);
 Vue.component('table-column', TableColumn);
 Vue.component('overview', Overview);
+Vue.component('upload', Upload);
 
 const app = new Vue({
     el: '#app'

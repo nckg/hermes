@@ -1,0 +1,16 @@
+.input {
+    @apply .transition-s;
+    @apply .p-4;
+    @apply .border .rounded;
+
+    &:hover {
+        @apply .border-extra-dark-smoke;
+    }
+
+    &:focus {
+        outline: 0;
+        @apply .border-blue;
+    }
+
+    // flex-grow p-4 border focus:outline-0 rounded-tl rounded-tr {{ $errors->has('email') ? 'border-red-dark' : 'border-grey-light' }}
+}

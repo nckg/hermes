@@ -36,7 +36,11 @@ a {
  * @import "components/buttons";
  * @import "components/forms";
  */
+@import "components/button";
+@import "components/checkbox";
+@import "components/input";
 @import "components/table";
+@import "components/tag";
 
 /**
  * Here you would add any custom utilities you need that don't come out of the
@@ -52,7 +56,11 @@ a {
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
-.transition {
+.transition-s {
+    transition: all .1s ease-in;
+}
+
+.transition-m {
     transition: all .1s ease-in;
 }
 
@@ -60,68 +68,9 @@ a {
     outline: 0;
 }
 
-.tag {
-    @apply inline-block bg-grey-lighter rounded-full px-3 py-1 text-xs text-grey-darker mr-2;
-
-    &:hover {
-        @apply bg-blue;
-        @apply text-white;
-        text-decoration: none;
-    }
+body {
+    color: config("colors.black");
 }
-
-.table-component__filter {
-    @apply relative;
-
-    .table-component__filter__clear {
-        @apply absolute pin-r pin-t pt-2 pr-4 .text-lg;
-        @apply text-grey-dark;
-        @apply cursor-pointer;
-    }
-}
-
-input[type="checkbox"],
-.checkbox input[type="checkbox"] {
-    @apply relative;
-    @apply border-0;
-    margin-bottom: -4px;
-    -webkit-appearance: none;
-    appearance: none;
-    cursor: pointer;
-
-    &:focus {
-        outline: none;
-    }
-
-    &:after {
-        content: "";
-        display: block;
-        width: 18px;
-        height: 18px;
-        margin-top: -2px;
-        margin-right: 5px;
-        @apply border-2 border-grey rounded transition;
-    }
-
-    &:checked:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 6px;
-        display: table;
-        width: 6px;
-        height: 12px;
-        border: 2px solid #fff;
-        border-top-width: 0;
-        border-left-width: 0;
-        transform: rotate(45deg);
-    }
-
-    &:checked:after {
-        @apply bg-blue border-blue;
-    }
-}
-
 
 [v-cloak] {
     display: none !important;

@@ -46,47 +46,35 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
     'transparent': 'transparent',
 
-    'black': '#22292f',
-    'grey-darkest': '#3d4852',
-    'grey-darker': '#606f7b',
-    'grey-dark': '#8795a1',
-    'grey': '#b8c2cc',
-    'grey-light': '#dae1e7',
-    'grey-lighter': '#f1f5f8',
-    'grey-lightest': '#f8fafc',
+    'black': '#1F2D3D',
+    'steel': '#273444',
+    'slate': '#3C4858',
+    'silver': '#8492A6',
+    'extra-dark-smoke': '#C0CCDA',
+    'dark-smoke': '#D3DCE6',
+    'smoke': '#E0E6ED',
+    'extra-dark-snow': '#E5E9F2',
+    'dark-snow': '#EFF2F7',
+    'snow': '#F9FAFC',
+
     'white': '#ffffff',
 
-    'red-darkest': '#3b0d0c',
-    'red-darker': '#621b18',
-    'red-dark': '#cc1f1a',
-    'red': '#e3342f',
-    'red-light': '#ef5753',
-    'red-lighter': '#f9acaa',
-    'red-lightest': '#fcebea',
+    'blue-light': '#85D7FF',
+    'blue': '#1FB6FF',
+    'blue-dark': '#009EEB',
 
-    'orange-darkest': '#462a16',
-    'orange-darker': '#613b1f',
-    'orange-dark': '#de751f',
-    'orange': '#f6993f',
-    'orange-light': '#faad63',
-    'orange-lighter': '#fcd9b6',
-    'orange-lightest': '#fff5eb',
+    'green-light': '#29EB7F',
+    'green': '#13CE66',
+    'green-dark': '#0F9F4F',
 
-    'green-darkest': '#0f2f21',
-    'green-darker': '#1a4731',
-    'green-dark': '#1f9d55',
-    'green': '#38c172',
-    'green-light': '#51d88a',
-    'green-lighter': '#a2f5bf',
-    'green-lightest': '#e3fcec',
+    'yellow-light': '#FFD55F',
+    'yellow': '#FFC82C',
+    'yellow-dark': '#F8B700',
 
-    'blue-darkest': '#12283a',
-    'blue-darker': '#1c3d5a',
-    'blue-dark': '#2779bd',
-    'blue': '#3490dc',
-    'blue-light': '#6cb2eb',
-    'blue-lighter': '#bcdefa',
-    'blue-lightest': '#eff8ff',
+    'orange-light': '#FF9E7C',
+    'orange': '#FF7849',
+    'orange-dark': '#FF5216',
+
 }
 
 module.exports = {
@@ -382,7 +370,7 @@ module.exports = {
     |
     */
 
-    borderColors: global.Object.assign({ default: colors['grey-light'] }, colors),
+    borderColors: global.Object.assign({ default: colors['extra-dark-snow'] }, colors),
 
 
     /*
@@ -694,6 +682,8 @@ module.exports = {
         'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
         'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
         'none': 'none',
+        'bottom-transparent': 'inset 0 -2px 0 rgba(31, 45, 61, 0)',
+        'bottom': 'inset 0 -2px 0 rgba(31, 45, 61, .2)',
     },
 
 

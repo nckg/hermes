@@ -25,20 +25,21 @@ class DocumentsController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('documents.create');
-    }
-
-    /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        $request->file('file')->move(storage_path('files'), $request->file('file')->getClientOriginalName());
+        $files = $request->file('file');
+
+        if (!is_array($files)) {
+            $files = [$files];
+        }
+
+        collect($files)->each(function ($file) {
+            $file->move(storage_path('files'), $file->getClientOriginalName());
+        });
+
         return redirect()->route('documents.index');
     }
 

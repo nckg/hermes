@@ -11,8 +11,8 @@
                             :data="fetchData"
                             :show-caption="false"
                             sort-by="created_at"
-                            table-class="table is-hoverable is-fullwidth mt-4 mb-4"
-                            filter-input-class="transition focus:outline-0 border border-transparent focus:bg-white focus:border-grey-light placeholder-grey-darkest rounded bg-grey-lighter py-2 px-4 block w-full appearance-none leading-normal ds-input mb-4"
+                            table-class="table w-full mt-4 mb-4"
+                            filter-input-class="input w-full"
                             sort-order="asc"
                     >
                         <table-column>
@@ -28,7 +28,7 @@
                         <table-column show="title"
                                       label="{{ __("Title") }}">
                             <template slot-scope="row">
-                                <a :href="route('documents.show', { id: row.id })">@{{ row.title }}</a>
+                                <a class="text-blue hover:text-blue-dark" :href="route('documents.show', { id: row.id })">@{{ row.title }}</a>
                             </template>
                         </table-column>
                         <table-column label="{{ __("Sender") }}"
@@ -42,20 +42,21 @@
                                       :filterable="false"
                                       data-type="date:DD/MM/YYYY"></table-column>
                         <table-column>
-                            <template slot-scope="row">
-                                <a class="tag cursor-pointer"
-                                   v-for="(tag, index) in row.tags"
+                            <template slot-scope="{ tags }">
+                                <a class="tag hover:bg-blue hover:text-white mr-2 cursor-pointer"
+                                   v-for="(tag, index) in tags"
                                    v-show="index < 4"
                                    :key="index"
-                                   @click="selectedTags.push(tag)">
+                                   :class="{ 'bg-blue text-white': selectedTags.filter(t => t.id === tag.id).length > 0 }"
+                                    @click="toggleTag(tag)">
                                     @{{ tag.name.en }}
                                 </a>
-                                <span class="tag" v-if="row.tags.slice(4).length > 0">+ @{{ row.tags.slice(4).length }}</span>
+                                <span class="tag" v-if="tags.slice(4).length > 0">+ @{{ row.tags.slice(4).length }}</span>
                             </template>
                         </table-column>
                         <table-column>
-                            <template slot-scope="row">
-                                <a :href="row.originalUrl"
+                            <template slot-scope="{ id }">
+                                <a :href="route('media.show', { id, download: true })"
                                    class="hover:text-blue-dark">@svg('icon-download', 'fill-current w-4 h-4')</a>
                             </template>
                         </table-column>
@@ -67,33 +68,31 @@
                      v-if="selectedItems.length > 0">
                     <p class="text-grey-dark mb-4">@{{ selectedItems.length }} item(s) selected</p>
 
-                    <button class="transition block w-full bg-green rounded text-white px-4 py-3 text-center hover:bg-green-dark mb-4"
+                    <button class="button block w-full mb-4"
                             @click="exportDocuments">
                         {{ __('Export items') }}
                     </button>
 
                     <button @click="destroy"
-                            class="transition block w-full bg-red rounded text-white px-4 py-3 text-center hover:bg-red-dark">
+                            class="button block w-full bg-orange">
                         {{ __('Delete items') }}
                     </button>
                 </div>
 
-                <a href="{{ route('documents.create') }}"
-                   class="mt-4 transition block bg-blue rounded text-white px-4 py-3 text-center hover:bg-blue-dark">{{ __("Add file") }}</a>
-                <h3 class="py-4 text-grey-darker uppercase text-sm mt-4">{{ __("Tags") }}</h3>
-                <a @click="selectedTags = []"
-                   :class="{ 'bg-white': selectedTags.length === 0 }"
-                   class="transition p-2 text-grey-darker hover:text-blue rounded mb-2">
-                    {{ __("All") }}
-                </a>
+                <upload inline-template>
+                    <a class="button bg-green mt-4"
+                       :class="{ 'is-loading': isWorking }"
+                       @click="select">{{ __("Add file(s)") }}</a>
+                </upload>
+                <h3 class="py-4 text-silver uppercase text-sm mt-4">{{ __("Tags") }}</h3>
 
-                <div v-for="tag in tags"
-                   class="transition flex cursor-pointer p-2 text-grey-darker hover:text-blue rounded mb-2 relative"
-                   :class="{ 'bg-white': selectedTags.filter(t => t.id === tag.id).length > 0 }">
-                    <a @click="selectedTags.push(tag)" class="flex-grow">@{{ tag.name.en }}</a>
-                    <button class="text-grey w-6 absolute pin-r pin-t pin-b z-10"
-                            v-if="selectedTags.filter(t => t.id === tag.id).length > 0"
-                            @click="selectedTags.splice(selectedTags.indexOf(tag), 1)">×</button>
+                <div>
+                    <a v-for="tag in tags"
+                       class="tag hover:bg-blue hover:text-white mr-2 mb-2 cursor-pointer relative"
+                       @click="toggleTag(tag)"
+                       :class="{ 'bg-blue text-white': selectedTags.filter(t => t.id === tag.id).length > 0 }">
+                        @{{ tag.name.en }}
+                    </a>
                 </div>
             </div>
         </div>

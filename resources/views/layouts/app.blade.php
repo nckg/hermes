@@ -26,19 +26,19 @@
     </script>
 
 </head>
-<body class="font-source-sans antialiased leading-tight bg-grey-lighter @yield('bodyClass')">
+<body class="font-source-sans antialiased leading-tight bg-snow @yield('bodyClass')">
     <div id="app"
          class="min-h-screen flex flex-col min-w-md cloak-fade"
          v-cloak>
 
         @auth
-        <div class="flex bg-white border-b border-grey-light h-16 items-center mb-6 shadow">
+        <div class="flex h-16 items-center mb-2">
             <div class="w-full max-w-screen-xl relative mx-auto px-6">
                 <div class="flex items-center -mx-6">
                     <div class="lg:w-1/4 xl:w-1/5 pl-6 pr-6 lg:pr-8">
                         <div class="flex items-center">
-                            <a href="/" class="block font-black text-lg tracking-tight text-grey hover:text-grey-darker">
-                                @svg("logo", "fill-current text-blue-dark w-24")
+                            <a href="/" class="block text-silver tracking-tight font-black text-2xl hover:text-blue">
+                                {{ config("app.name") }}
                             </a>
                         </div>
                     </div>

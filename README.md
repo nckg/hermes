@@ -10,11 +10,12 @@ I don't like paperwork. I hate searching for papers. This is an attempt to make 
 * [x] Mass export
 * [x] Delete file
 * [ ] Cleanup images with [Unpaper](https://www.flameeyes.eu/projects/unpaper)
-* [ ] Don't expose files directly
+* [x] Don't expose files directly
 * [ ] Edit tags, title, date
 * [x] Filter
 * [x] Logo
 * [x] Login styling
+* [ ] Backup files on Google Drive
 
 ## Installation
 
@@ -28,11 +29,21 @@ Hermes depends on the following:
 * Ghostscript
 * pdftotext
 * Tesseract
+* Unpaper
 
 #### 1. Install dependencies
 
 ```bash
-    sudo apt-get install imagemagick ghostscript poppler-utils tesseract-ocr
+    sudo apt-get install imagemagick ghostscript poppler-utils tesseract-ocr unpaper
+```
+
+or for Mac OS
+
+```bash
+    brew install ghostscript
+    brew cask install pdftotext
+    brew install tesseract --with-all-languages
+    brew install unpaper
 ```
 
 #### 2. Clone the repository
@@ -91,6 +102,11 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 ![](./docs/overview.jpg)
 
 ![](./docs/detail.jpg)
+
+## Similar Projects
+
+* [Paperless](https://github.com/danielquinn/paperless)
+* [Mayan EDMS](https://mayan.readthedocs.org/en/latest/)
 
 ## Why Hermes?
 

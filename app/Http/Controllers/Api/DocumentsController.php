@@ -20,6 +20,7 @@ class DocumentsController extends Controller
             ->where(function ($query) use ($filter) {
                 $query->where('title', 'like', "%{$filter}%");
                 $query->orWhere('sender', 'like', "%{$filter}%");
+                $query->orWhere('content', 'like', "%{$filter}%");
             })
             ->orderBy('created_at', 'asc')
             ->get();

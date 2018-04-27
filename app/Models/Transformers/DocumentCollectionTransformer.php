@@ -24,6 +24,8 @@ class DocumentCollectionTransformer
     }
 
     /**
+     * Transforms a collection of documents into an array with the original url
+     *
      * @return mixed
      */
     public function transform()

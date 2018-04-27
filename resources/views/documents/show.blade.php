@@ -2,10 +2,9 @@
 
 @section('content')
     <div class="flex">
-
         <div class="w-3/4">
             <div class="bg-white mb-4">
-                <iframe src="{{ $model->getFirstMedia()->getUrl() }}" class="w-full h-screen"></iframe>
+                <iframe src="{{ route('media.show', $model->id) }}" class="w-full h-screen"></iframe>
             </div>
         </div>
 
@@ -19,6 +18,13 @@
                 {{ $model->title }}
             </h1>
 
+            <div class="flex mb-4 flex-wrap">
+                @foreach($model->tags as $tag)
+                    <a href="{{ route('documents.index', ['tag' => $tag->name]) }}"
+                       class="tag mb-2 mr-2">{{ $tag->name }}</a>
+                @endforeach
+            </div>
+
             <dl class="flex flex-wrap">
                 <dt class="py-2 w-1/4 font-semibold border-b border-grey-light">{{ __('Date') }}</dt>
                 <dd class="py-2 w-3/4 text-right border-b border-grey-light">{{ $model->date->format('d/m/Y') }}</dd>
@@ -26,17 +32,10 @@
                 <dd class="py-2 w-3/4 text-right border-b border-grey-light">{{ $model->created_at->format('d/m/Y') }}</dd>
             </dl>
 
-            <a href="{{ $model->getFirstMedia()->getUrl() }}"
-               class="mt-4 transition block bg-blue rounded text-white px-4 py-3 text-center hover:bg-blue-dark">
+            <a href="{{ route('media.show', [$model->id, 'download']) }}"
+               class="mt-4 button bg-green">
                 Download
             </a>
-
-            <div class="flex mt-6 flex-wrap">
-                @foreach($model->tags as $tag)
-                    <a href="{{ route('documents.index', ['tag' => $tag->name]) }}"
-                       class="tag bg-grey-light mb-2">{{ $tag->name }}</a>
-                @endforeach
-            </div>
         </div>
     </div>
 @endsection
