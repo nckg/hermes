@@ -8,6 +8,7 @@ export default {
         return {
             selectedItems: [],
             selectedTags: [],
+            isWorking: false,
         };
     },
 
@@ -29,6 +30,8 @@ export default {
         },
 
         destroy() {
+            this.isWorking = true;
+
             axios({
                 method: 'delete',
                 url: this.route('api::documents.destroy'),
@@ -38,7 +41,10 @@ export default {
                     this.$refs.table.refresh();
                     this.selectedItems = [];
                 })
-                .catch(() => {});
+                .catch(() => {})
+                .finally(() => {
+                    this.isWorking = false;
+                });
         },
 
         exportDocuments() {
@@ -60,9 +66,12 @@ export default {
         },
 
         async fetchData({ filter }) {
+            this.isWorking = true;
+
             const tag = this.selectedTags.map(tag => tag.name.en);
             const response = await axios.get(this.route('api::documents.index', { filter, tag }));
 
+            this.isWorking = false;
             // An object that has a `data` and an optional `pagination` property
             return response;
         },

@@ -58,7 +58,7 @@
         </div>
         @endauth
         <div class="flex">
-            <div class="w-full max-w-screen-xl relative mx-auto px-6 mb-12">
+            <div class="w-full max-w-screen-xl mx-auto px-6 mb-12">
                 @yield('content')
             </div>
         </div>

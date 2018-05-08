@@ -46,6 +46,8 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
     'transparent': 'transparent',
 
+    white: '#ffffff',
+
     'black': '#1F2D3D',
     'steel': '#273444',
     'slate': '#3C4858',
@@ -56,8 +58,6 @@ let colors = {
     'extra-dark-snow': '#E5E9F2',
     'dark-snow': '#EFF2F7',
     'snow': '#F9FAFC',
-
-    'white': '#ffffff',
 
     'blue-light': '#85D7FF',
     'blue': '#1FB6FF',
@@ -75,6 +75,17 @@ let colors = {
     'orange': '#FF7849',
     'orange-dark': '#FF5216',
 
+    'red': '#FF4949',
+
+    get ['negative']() { return this['red']; },
+    get ['positive']() { return this['green']; },
+    get ['warning']() { return this['yellow']; },
+
+    'smoke-light': 'rgba(0, 0, 0, 0.4)',
+
+    get ['brand-dark']() { return this['blue-dark']; },
+    get ['brand']() { return this['blue']; },
+    get ['brand-light']() { return this['blue-light']; },
 }
 
 module.exports = {

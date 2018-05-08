@@ -15,7 +15,8 @@ I don't like paperwork. I hate searching for papers. This is an attempt to make 
 * [x] Filter
 * [x] Logo
 * [x] Login styling
-* [ ] Backup files on Google Drive
+* [ ] ~~Backup files on Google Drive~~
+* [ ] Pull files on Google Drive
 
 ## Installation
 
