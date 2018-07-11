@@ -4888,6 +4888,12 @@ module.exports = {
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(144);
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -4912,12 +4918,6 @@ try {
 
 module.exports = g;
 
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(144);
 
 /***/ }),
 /* 4 */
@@ -34457,14 +34457,14 @@ module.exports = Cancel;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(5)(module)))
 
 /***/ }),
 /* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(137);
-module.exports = __webpack_require__(167);
+module.exports = __webpack_require__(168);
 
 
 /***/ }),
@@ -34477,6 +34477,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_table_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_table_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Overview__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Upload__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_EditData__ = __webpack_require__(163);
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -34487,9 +34489,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__webpack_require__(163);
 
-window.Vue = __webpack_require__(164);
+__webpack_require__(164);
+
+window.Vue = __webpack_require__(165);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34507,6 +34510,55 @@ Vue.component('table-component', __WEBPACK_IMPORTED_MODULE_0_vue_table_component
 Vue.component('table-column', __WEBPACK_IMPORTED_MODULE_0_vue_table_component__["TableColumn"]);
 Vue.component('overview', __WEBPACK_IMPORTED_MODULE_1__components_Overview__["a" /* default */]);
 Vue.component('upload', __WEBPACK_IMPORTED_MODULE_2__components_Upload__["a" /* default */]);
+Vue.component('edit-data', __WEBPACK_IMPORTED_MODULE_3__components_EditData__["a" /* default */]);
+
+Vue.component('tags-input', {
+    props: ['value'],
+    data: function data() {
+        return {
+            newTag: ''
+        };
+    },
+
+    methods: {
+        addTag: function addTag() {
+            if (this.newTag.trim().length === 0 || this.value.includes(this.newTag.trim())) {
+                return;
+            }
+            this.$emit('input', [].concat(_toConsumableArray(this.value), [this.newTag.trim()]));
+            this.newTag = '';
+            console.log(this.value);
+        },
+        removeTag: function removeTag(tag) {
+            this.$emit('input', this.value.filter(function (t) {
+                return t !== tag;
+            }));
+        }
+    },
+    render: function render() {
+        var _this = this;
+
+        return this.$scopedSlots.default({
+            tags: this.value,
+            addTag: this.addTag,
+            removeTag: this.removeTag,
+            inputAttrs: {
+                value: this.newTag
+            },
+            inputEvents: {
+                input: function input(e) {
+                    _this.newTag = e.target.value;
+                },
+                keydown: function keydown(e) {
+                    if (e.keyCode === 13) {
+                        e.preventDefault();
+                        _this.addTag();
+                    }
+                }
+            }
+        });
+    }
+});
 
 var app = new Vue({
     el: '#app'
@@ -39894,7 +39946,7 @@ webpackContext.id = 139;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
@@ -39977,7 +40029,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.isWorking = true;
 
                                 tag = this.selectedTags.map(function (tag) {
-                                    return tag.name.en;
+                                    return tag.name;
                                 });
                                 _context.next = 4;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(this.route('api::documents.index', { filter: filter, tag: tag }));
@@ -41675,7 +41727,7 @@ module.exports = function spread(callback) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
 
@@ -41736,6 +41788,67 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 163 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    props: ['value', 'url'],
+
+    data: function data() {
+        return {
+            input: this.value,
+            editing: false
+        };
+    },
+
+
+    watch: {
+        value: function value(_value) {
+            this.input = _value;
+        },
+        input: function input(value) {
+            return this.$emit('input', value);
+        }
+    },
+
+    methods: {
+        save: function save(value) {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put(this.url, value).then(function () {
+                _this.editing = false;
+            });
+        }
+    },
+
+    render: function render() {
+        var _this2 = this;
+
+        return this.$scopedSlots.default({
+            input: this.input,
+            inputAttrs: {
+                value: this.input
+            },
+            inputEvents: {
+                input: function input(e) {
+                    _this2.input = e.target.value;
+                }
+            },
+            editing: this.editing,
+            toggleEditing: function toggleEditing() {
+                _this2.editing = !_this2.editing;
+            },
+            save: this.save
+        });
+    }
+});
+
+/***/ }),
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 window._ = __webpack_require__(135);
@@ -41746,7 +41859,7 @@ window._ = __webpack_require__(135);
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(3);
+window.axios = __webpack_require__(2);
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
@@ -41780,7 +41893,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52743,10 +52856,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(165).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(166).setImmediate))
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -52799,7 +52912,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(166);
+__webpack_require__(167);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -52810,10 +52923,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -53003,10 +53116,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(130)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(130)))
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

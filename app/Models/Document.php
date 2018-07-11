@@ -17,6 +17,11 @@ class Document extends Model implements HasMedia
 
     protected $dates = ['date'];
 
+    public static function getTagClassName(): string
+    {
+        return Tag::class;
+    }
+
     public function getDirectory()
     {
         return dirname($this->getFirstMedia()->getPath());

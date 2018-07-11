@@ -31,6 +31,11 @@ class ParseDocumentTest extends TestCase
             'date' => '2018-03-08 00:00:00',
             'content' => 'Hello World',
         ]);
+
+        $this->assertDatabaseHas('tags', ['name' => 'invoice']);
+        $this->assertDatabaseHas('tags', ['name' => 'foobar']);
+        $this->assertDatabaseHas('tags', ['name' => 'baz']);
+        $this->assertDatabaseHas('tags', ['name' => 'bar']);
     }
 
 }

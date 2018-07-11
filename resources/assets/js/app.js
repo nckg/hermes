@@ -7,6 +7,7 @@
 import { TableComponent, TableColumn } from 'vue-table-component';
 import Overview from './components/Overview';
 import Upload from './components/Upload';
+import EditData from './components/EditData';
 
 require('./bootstrap');
 
@@ -28,6 +29,49 @@ Vue.component('table-component', TableComponent);
 Vue.component('table-column', TableColumn);
 Vue.component('overview', Overview);
 Vue.component('upload', Upload);
+Vue.component('edit-data', EditData);
+
+Vue.component('tags-input', {
+    props: ['value'],
+    data() {
+        return {
+            newTag: '',
+        };
+    },
+    methods: {
+        addTag() {
+            if (this.newTag.trim().length === 0 || this.value.includes(this.newTag.trim())) {
+                return;
+            }
+            this.$emit('input', [...this.value, this.newTag.trim()]);
+            this.newTag = '';
+            console.log(this.value);
+        },
+        removeTag(tag) {
+            this.$emit('input', this.value.filter(t => t !== tag))
+        },
+    },
+    render() {
+        return this.$scopedSlots.default({
+            tags: this.value,
+            addTag: this.addTag,
+            removeTag: this.removeTag,
+            inputAttrs: {
+                value: this.newTag,
+            },
+            inputEvents: {
+                input: (e) => { this.newTag = e.target.value },
+                keydown: (e) => {
+                    if (e.keyCode === 13) {
+                        e.preventDefault();
+                        this.addTag();
+                    }
+                },
+            },
+        });
+    },
+});
+
 
 const app = new Vue({
     el: '#app'

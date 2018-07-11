@@ -6,7 +6,7 @@ use App\Jobs\ParseDocument;
 use App\Models\Document;
 use App\Models\Transformers\DocumentCollectionTransformer;
 use Illuminate\Http\Request;
-use Spatie\Tags\Tag;
+use App\Models\Tag;
 
 class DocumentsController extends Controller
 {
@@ -49,8 +49,24 @@ class DocumentsController extends Controller
      */
     public function show($id)
     {
-        $model = Document::find($id);
+        $model = $this->find($id);
 
         return view('documents.show')->with(compact('model'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $model = $this->find($id);
+
+        $model->update($request->all());
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    protected function find($id)
+    {
+        return Document::find($id);
     }
 }

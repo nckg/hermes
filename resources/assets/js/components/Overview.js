@@ -68,7 +68,7 @@ export default {
         async fetchData({ filter }) {
             this.isWorking = true;
 
-            const tag = this.selectedTags.map(tag => tag.name.en);
+            const tag = this.selectedTags.map(tag => tag.name);
             const response = await axios.get(this.route('api::documents.index', { filter, tag }));
 
             this.isWorking = false;

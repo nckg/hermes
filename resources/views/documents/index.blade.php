@@ -51,7 +51,7 @@
                                        :key="index"
                                        :class="{ 'bg-blue text-white': selectedTags.filter(t => t.id === tag.id).length > 0 }"
                                         @click="toggleTag(tag)">
-                                        @{{ tag.name.en }}
+                                        @{{ tag.name }}
                                     </a>
                                     <span class="tag" v-if="tags.slice(4).length > 0">+ @{{ tags.slice(4).length }}</span>
                                 </template>
@@ -93,7 +93,7 @@
                            class="tag hover:bg-blue hover:text-white mr-2 mb-2 cursor-pointer relative"
                            @click="toggleTag(tag)"
                            :class="{ 'bg-blue text-white': selectedTags.filter(t => t.id === tag.id).length > 0 }">
-                            @{{ tag.name.en }}
+                            @{{ tag.name }}
                         </a>
                     </div>
                 </div>
