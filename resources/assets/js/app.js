@@ -4,7 +4,6 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import { TableComponent, TableColumn } from 'vue-table-component';
 import Overview from './components/Overview';
 import Upload from './components/Upload';
 import EditData from './components/EditData';
@@ -25,8 +24,6 @@ Vue.mixin({
     },
 });
 
-Vue.component('table-component', TableComponent);
-Vue.component('table-column', TableColumn);
 Vue.component('overview', Overview);
 Vue.component('upload', Upload);
 Vue.component('edit-data', EditData);

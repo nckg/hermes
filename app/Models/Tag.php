@@ -8,6 +8,11 @@ class Tag extends Model
 {
     public $translatable = [];
 
+    public function taggables()
+    {
+        return $this->hasMany('taggables');
+    }
+
     public static function findFromString(string $name, string $type = null, string $locale = null)
     {
         return static::query()

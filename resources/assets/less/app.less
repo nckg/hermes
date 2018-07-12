@@ -36,12 +36,6 @@ a {
  * @import "components/buttons";
  * @import "components/forms";
  */
-@import "components/button";
-@import "components/checkbox";
-@import "components/input";
-@import "components/loading";
-@import "components/table";
-@import "components/tag";
 
 /**
  * Here you would add any custom utilities you need that don't come out of the
@@ -67,6 +61,33 @@ a {
 
 .focus\:outline-0:focus {
     outline: 0;
+}
+
+.spin {
+    -webkit-animation: spinAround 1s infinite linear;
+            animation: spinAround 1s infinite linear;
+}
+
+@-webkit-keyframes spinAround {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes spinAround {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
 }
 
 body {

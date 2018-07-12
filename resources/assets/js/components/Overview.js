@@ -6,16 +6,26 @@ export default {
 
     data() {
         return {
+            filter: '',
             selectedItems: [],
             selectedTags: [],
             isWorking: false,
+            data: [],
         };
     },
 
     watch: {
         selectedTags() {
-            this.$refs.table.refresh();
+            this.fetchData({ filter: this.filter });
         },
+
+        filter(val) {
+            this.fetchData({ filter: val });
+        },
+    },
+
+    created() {
+        this.fetchData({ filter: '' });
     },
 
     methods: {
@@ -30,6 +40,10 @@ export default {
         },
 
         destroy() {
+            if (!confirm('Destroy these documents?')) {
+                return;
+            }
+
             this.isWorking = true;
 
             axios({
@@ -38,7 +52,7 @@ export default {
                 data: {id: this.selectedItems},
             })
                 .then(() => {
-                    this.$refs.table.refresh();
+                    this.fetchData({ filter: this.filter });
                     this.selectedItems = [];
                 })
                 .catch(() => {})
@@ -69,11 +83,11 @@ export default {
             this.isWorking = true;
 
             const tag = this.selectedTags.map(tag => tag.name);
-            const response = await axios.get(this.route('api::documents.index', { filter, tag }));
+            const { data } = await axios.get(this.route('api::documents.index', { filter, tag }));
+
+            this.data = data;
 
             this.isWorking = false;
-            // An object that has a `data` and an optional `pagination` property
-            return response;
         },
     },
 }

@@ -7,6 +7,7 @@ use App\Models\Document;
 use App\Models\Transformers\DocumentCollectionTransformer;
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use Illuminate\Support\Facades\DB;
 
 class DocumentsController extends Controller
 {
@@ -20,7 +21,12 @@ class DocumentsController extends Controller
 
         return view('documents.index')->with([
             'models' => (new DocumentCollectionTransformer($models))->transform(),
-            'tags' => Tag::all()->sortBy('name')->values(),
+            'tags' => Tag::query()
+                ->join('taggables', 'taggables.tag_id', 'tags.id')
+                ->select('tags.name', 'tags.id', DB::raw('COUNT("taggables.taggable_id") AS count'))
+                ->groupBy('taggables.tag_id')
+                ->orderByDesc('count')
+                ->get(),
         ]);
     }
 
@@ -41,17 +47,6 @@ class DocumentsController extends Controller
         });
 
         return redirect()->route('documents.index');
-    }
-
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function show($id)
-    {
-        $model = $this->find($id);
-
-        return view('documents.show')->with(compact('model'));
     }
 
     public function update(Request $request, $id)

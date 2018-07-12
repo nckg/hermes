@@ -16,7 +16,6 @@
     @routes
 
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     <script>
@@ -26,7 +25,7 @@
     </script>
 
 </head>
-<body class="font-source-sans antialiased leading-tight bg-snow @yield('bodyClass')">
+<body class="font-source-sans antialiased leading-tight bg-grey-lightest @yield('bodyClass')">
     <div id="app"
          class="min-h-screen flex flex-col min-w-md cloak-fade"
          v-cloak>
@@ -37,7 +36,7 @@
                 <div class="flex items-center -mx-6">
                     <div class="lg:w-1/4 xl:w-1/5 pl-6 pr-6 lg:pr-8">
                         <div class="flex items-center">
-                            <a href="/" class="block text-silver tracking-tight font-black text-2xl hover:text-blue">
+                            <a href="/" class="block text-grey tracking-tight font-black hover:text-blue">
                                 {{ config("app.name") }}
                             </a>
                         </div>

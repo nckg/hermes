@@ -20,8 +20,9 @@
         "axios": "^0.18",
         "lodash": "^4.17.4",
         "moment": "^2.22.1",
-        "tailwindcss": ">=0.5.1",
+        "tailwindcss": "^0.6.1",
         "vue": "^2.5.7",
+        "vue-avatar": "^2.1.5",
         "vue-table-component": "^1.9.1"
     }
 }
