@@ -4,20 +4,6 @@ Index and archive all of your scanned paper documents.
 
 I don't like paperwork. I hate searching for papers. This is an attempt to make my life easier.
 
-## Todo
-
-* [x] Basic setup
-* [x] Mass export
-* [x] Delete file
-* [ ] Cleanup images with [Unpaper](https://www.flameeyes.eu/projects/unpaper)
-* [x] Don't expose files directly
-* [ ] Edit tags, title, date
-* [x] Filter
-* [x] Logo
-* [x] Login styling
-* [ ] ~~Backup files on Google Drive~~
-* [ ] Pull files on Google Drive
-
 ## Installation
 
 Hermes depends on the following:
@@ -25,7 +11,8 @@ Hermes depends on the following:
 * Git
 * PHP 7.0+
 * Composer
-* MySQL
+* MySQL / SQLite
+* Google Drive
 * ImageMagick 
 * Ghostscript
 * pdftotext
@@ -35,7 +22,7 @@ Hermes depends on the following:
 #### 1. Install dependencies
 
 ```bash
-    sudo apt-get install imagemagick ghostscript poppler-utils tesseract-ocr unpaper
+    sudo apt-get install imagemagick ghostscript poppler-utils tesseract-ocr unpaper -y
 ```
 
 or for Mac OS
@@ -97,12 +84,6 @@ composer test
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Screenshots
-
-![](./docs/login.jpg)
-
-![](./docs/overview.jpg)
-
-![](./docs/detail.jpg)
 
 ## Similar Projects
 

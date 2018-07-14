@@ -5,7 +5,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 import Overview from './components/Overview';
-import Upload from './components/Upload';
 import EditData from './components/EditData';
 
 require('./bootstrap');
@@ -25,7 +24,6 @@ Vue.mixin({
 });
 
 Vue.component('overview', Overview);
-Vue.component('upload', Upload);
 Vue.component('edit-data', EditData);
 
 Vue.component('tags-input', {

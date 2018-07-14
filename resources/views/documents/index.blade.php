@@ -11,13 +11,6 @@
                            v-model="filter"
                            placeholder="{{ __('Search') }}">
 
-                    <upload inline-template>
-                        <button @click="select"
-                                class="shadow-md rounded-full fixed pin-r pin-b h-10 w-10 mb-4 mr-4 bg-green text-center rounded-full p-2 hover:bg-green-dark">
-                            @svg("icon-plus", "fill-current w-6 h-6 text-white")
-                        </button>
-                    </upload>
-
                     <div class="fixed flex items-center pin-t pin-x bg-white px-6 py-4 shadow-md"
                          v-if="selectedItems.length > 0">
 

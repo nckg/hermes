@@ -39,7 +39,7 @@ class DocumentCollectionTransformer
                     'tags' => $model->tags,
                     'date' => $model->date->format("d/m/Y"),
                     'created_at' => $model->created_at->format("d/m/Y"),
-                    'originalUrl' => $model->getFirstMedia()->getUrl(),
+//                    'originalUrl' => $model->getFirstMedia()->getUrl(),
                 ];
             });
     }

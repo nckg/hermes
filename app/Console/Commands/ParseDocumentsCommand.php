@@ -2,7 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Exceptions\DirectoryNotFoundException;
 use App\Jobs\ParseDocument;
+use App\Models\Document;
+use App\Support\FileNameParser;
+use App\Support\FileProcessor;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -40,15 +44,33 @@ class ParseDocumentsCommand extends Command
      */
     public function handle()
     {
-        collect(Storage::disk('files')->files())
-            // Reject dot files
-            ->reject(function ($item) {
-                return Str::endsWith($item, ['.DS_Store', '.gitignore']);
+        // get directory
+        $files = collect(Storage::listContents('/', false))
+            ->where('type', '=', 'file')
+            ->filter(function ($file) {
+                return Document::where('uid', $file['basename'])->count() == 0;
             })
             ->each(function ($file) {
-                $storagePath  = Storage::disk('files')->getDriver()->getAdapter()->getPathPrefix();
+                $this->info($file['filename']);
+                $fileParser = FileNameParser::parse($file['filename']);
+                $document = Document::create([
+                    'uid' => $file['basename'],
+                    'title' => $fileParser->title,
+                    'sender' => $fileParser->sender,
+                    'date' => $fileParser->date,
+                    'tags' => $fileParser->tags,
+                ]);
 
-                ParseDocument::dispatch($storagePath . DIRECTORY_SEPARATOR . $file);
+                // process for reading
+                $readStream = Storage::getDriver()->readStream($file['path']);
+                Storage::disk('tmp')->put($file['name'], stream_get_contents($readStream));
+
+                $processor = app()->make(FileProcessor::class);
+                $text = $processor->process(storage_path('tmp') . DIRECTORY_SEPARATOR . $file['name']);
+
+                $document->update(['content' => $text]);
+
+                Storage::delete($file['name']);
             });
     }
 }

@@ -34,8 +34,7 @@ class FileNameParser
 
     public function parseName()
     {
-        $string = preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->filename);
-        $parts = explode(' - ', $string);
+        $parts = explode(' - ', $this->filename);
         $this->date = Carbon::parse($parts[0]);
         $this->sender = $parts[1];
         $this->title = $parts[2];

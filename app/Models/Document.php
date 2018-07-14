@@ -8,9 +8,8 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Tags\HasTags;
 
-class Document extends Model implements HasMedia
+class Document extends Model
 {
-    use HasMediaTrait;
     use HasTags;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
@@ -20,11 +19,6 @@ class Document extends Model implements HasMedia
     public static function getTagClassName(): string
     {
         return Tag::class;
-    }
-
-    public function getDirectory()
-    {
-        return dirname($this->getFirstMedia()->getPath());
     }
 
     /**
