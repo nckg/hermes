@@ -11,6 +11,7 @@ export default {
             selectedTags: [],
             isWorking: false,
             data: [],
+            showTags: false,
         };
     },
 

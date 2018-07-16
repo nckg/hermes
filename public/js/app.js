@@ -18197,7 +18197,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             selectedItems: [],
             selectedTags: [],
             isWorking: false,
-            data: []
+            data: [],
+            showTags: false
         };
     },
 

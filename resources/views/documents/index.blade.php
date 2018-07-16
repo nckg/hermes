@@ -36,12 +36,19 @@
 
                     <div class="mb-4">
                         <span class="mr-2 text-grey-dark">{{ __('Popular tags') }}:</span>
-                        <a v-for="tag in tags"
-                           class="inline-block bg-grey-light rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2 mb-2 cursor-pointer"
+                        <a v-for="(tag, index) in tags"
+                           class="inline-block bg-grey-light rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2 mb-2 cursor-pointer hover:bg-blue-lighter"
+                           v-if="index < 5 || (index > 5 && showTags)"
                            @click="toggleTag(tag)"
                            :class="{ 'bg-blue text-white': selectedTags.filter(t => t.id === tag.id).length > 0 }">
                             @{{ tag.name }}
                         </a>
+                        <button @click="showTags = true"
+                                v-if="!showTags"
+                                class="text-grey-dark text-sm focus:outline-0 hover:text-blue">{{ __('Show all tags') }}</button>
+                        <button @click="showTags = false"
+                                v-if="showTags"
+                                class="text-grey-dark text-sm focus:outline-0 hover:text-blue">{{ __('Hide all tags') }}</button>
                     </div>
 
                     <div class="flex items-center justify-center py-12"

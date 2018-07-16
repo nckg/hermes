@@ -69,5 +69,5 @@ Vue.component('tags-input', {
 
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });
