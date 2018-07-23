@@ -17,10 +17,7 @@ class DocumentsController extends Controller
      */
     public function index(Request $request)
     {
-        $models = Document::byTag($request->input('tag'))->orderBy('created_at', 'asc')->get();
-
         return view('documents.index')->with([
-            'models' => (new DocumentCollectionTransformer($models))->transform(),
             'tags' => Tag::query()
                 ->join('taggables', 'taggables.tag_id', 'tags.id')
                 ->select('tags.name', 'tags.id', DB::raw('COUNT("taggables.taggable_id") AS count'))

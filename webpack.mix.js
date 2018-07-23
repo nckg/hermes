@@ -13,7 +13,25 @@ require("laravel-mix-purgecss");
  |
  */
 
-mix
+mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                test: /\.svg$/,
+                loader: 'vue-svg-loader', // `vue-svg` for webpack 1.x
+                options: {
+                    // optional [svgo](https://github.com/svg/svgo) options
+                    svgo: {
+                        plugins: [
+                            { removeViewBox: false },
+                            { removeComments: true },
+                        ],
+                    },
+                },
+            },
+        ],
+    },
+})
   .js("resources/assets/js/app.js", "public/js")
     .less('resources/assets/less/app.less', 'public/css')
     .options({

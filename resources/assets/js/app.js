@@ -4,8 +4,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import Overview from './components/Overview';
-import EditData from './components/EditData';
+import FileList from './components/FileList.vue';
 
 require('./bootstrap');
 
@@ -23,8 +22,7 @@ Vue.mixin({
     },
 });
 
-Vue.component('overview', Overview);
-Vue.component('edit-data', EditData);
+Vue.component('file-list', FileList);
 
 Vue.component('tags-input', {
     props: ['value'],
