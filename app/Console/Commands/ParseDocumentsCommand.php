@@ -62,15 +62,19 @@ class ParseDocumentsCommand extends Command
                 ]);
 
                 // process for reading
-                $readStream = Storage::getDriver()->readStream($file['path']);
-                Storage::disk('tmp')->put($file['name'], stream_get_contents($readStream));
+                try {
+                    $readStream = Storage::getDriver()->readStream($file['path']);
+                    Storage::disk('tmp')->put($file['name'], stream_get_contents($readStream));
 
-                $processor = app()->make(FileProcessor::class);
-                $text = $processor->process(storage_path('tmp') . DIRECTORY_SEPARATOR . $file['name']);
+                    $processor = app()->make(FileProcessor::class);
+                    $text = $processor->process(storage_path('tmp') . DIRECTORY_SEPARATOR . $file['name']);
 
-                $document->update(['content' => $text]);
+                    $document->update(['content' => $text]);
 
-                Storage::delete($file['name']);
+                    Storage::delete($file['name']);
+                } catch (\Exception $e) {
+
+                }
             });
     }
 }

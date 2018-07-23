@@ -44,7 +44,7 @@ class ParseDocument implements ShouldQueue
         $file = new File($this->file);
         $document = $this->create($file->getBasename());
         $document->addMedia($file)->toMediaCollection();
-        $document->update(['content' => $processor->process($document->getFirstMedia()->getPath())]);
+        // $document->update(['content' => $processor->process($document->getFirstMedia()->getPath())]);
     }
 
     /**
