@@ -21,7 +21,7 @@ class DocumentsController extends Controller
             'tags' => Tag::query()
                 ->join('taggables', 'taggables.tag_id', 'tags.id')
                 ->select('tags.name', 'tags.id', DB::raw('COUNT("taggables.taggable_id") AS count'))
-                ->groupBy('taggables.tag_id')
+                ->groupBy('taggables.tag_id', 'tags.name')
                 ->orderByDesc('count')
                 ->get(),
         ]);
