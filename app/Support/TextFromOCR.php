@@ -2,9 +2,9 @@
 
 namespace App\Support;
 
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use thiagoalessio\TesseractOCR\TesseractOCR;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class TextFromOCR
 {
@@ -36,7 +36,7 @@ class TextFromOCR
             ->map(function ($file) {
                 $result = (new TesseractOCR($file))->lang('nld')->run();
 
-                 unlink($file);
+                unlink($file);
 
                 return $result;
             })
@@ -57,7 +57,7 @@ class TextFromOCR
         $process->run();
 
         // executes after the command finishes
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
     }

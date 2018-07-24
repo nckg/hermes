@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ParseDocument;
-use App\Models\Document;
-use App\Models\Transformers\DocumentCollectionTransformer;
-use Illuminate\Http\Request;
 use App\Models\Tag;
+use App\Models\Document;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DocumentsController extends Controller
@@ -35,7 +33,7 @@ class DocumentsController extends Controller
     {
         $files = $request->file('file');
 
-        if (!is_array($files)) {
+        if (! is_array($files)) {
             $files = [$files];
         }
 

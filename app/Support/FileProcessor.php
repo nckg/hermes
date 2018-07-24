@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Support;
 
 use Spatie\PdfToText\Pdf;
@@ -53,6 +52,5 @@ class FileProcessor
         $string = iconv('UTF-8', 'UTF-8//IGNORE', $string);
 
         return iconv('UTF-8', 'UTF-8//TRANSLIT', $string);
-
     }
 }

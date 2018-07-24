@@ -8,7 +8,9 @@
               action="{{ route('login') }}">
             {{ csrf_field() }}
             <div class="flex flex-col">
-                <div class="text-center text-2xl text-grey mb-4 tracking-tight font-bold">{{ config("app.name") }}</div>
+                <div class="text-center text-2xl text-grey mb-4">
+                    @svg('logo', 'h-6 fill-current')
+                </div>
 
                 <input id="email"
                        type="email"

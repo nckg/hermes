@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use ZipArchive;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use ZipArchive;
 
 class ExportDocumentsController extends Controller
 {
@@ -33,6 +33,5 @@ class ExportDocumentsController extends Controller
         $archive->close();
 
         return response()->download($file)->deleteFileAfterSend(true);
-
     }
 }

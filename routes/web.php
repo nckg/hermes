@@ -24,10 +24,9 @@ Route::group(config('route.admin'), function () {
     Route::put('documents/{id}', 'DocumentsController@update')->name('documents.update');
     Route::get('media/{id}', 'MediaController@show')->name('media.show');
 
-    Route::name('api::')->namespace('Api')->prefix('api')->group(function() {
+    Route::name('api::')->namespace('Api')->prefix('api')->group(function () {
         Route::get('documents', 'DocumentsController@index')->name('documents.index');
         Route::delete('documents', 'DocumentsController@destroy')->name('documents.destroy');
         Route::post('export-documents', 'ExportDocumentsController@store')->name('export.store');
     });
 });
-

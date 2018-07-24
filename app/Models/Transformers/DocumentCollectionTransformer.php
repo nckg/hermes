@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models\Transformers;
-
 
 use App\Models\Document;
 use Illuminate\Support\Collection;

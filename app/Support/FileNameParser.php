@@ -1,18 +1,16 @@
 <?php
 
-
 namespace App\Support;
-
 
 use Carbon\Carbon;
 
 class FileNameParser
 {
-    protected $filename;
     public $date;
     public $sender;
     public $title;
     public $tags;
+    protected $filename;
 
     /**
      * FileNameParser constructor.

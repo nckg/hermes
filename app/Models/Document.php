@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Tags\HasTags;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Document extends Model
 {
@@ -33,7 +31,7 @@ class Document extends Model
 
         $tags = array_filter($tags);
 
-        if (!empty($tags)) {
+        if (! empty($tags)) {
             $query->withAnyTags($tags);
         }
     }

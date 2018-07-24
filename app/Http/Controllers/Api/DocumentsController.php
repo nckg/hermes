@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Document;
-use App\Models\Transformers\DocumentCollectionTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Transformers\DocumentCollectionTransformer;
 
 class DocumentsController extends Controller
 {
@@ -22,7 +22,7 @@ class DocumentsController extends Controller
                 $query->orWhere('sender', 'like', "%{$filter}%");
                 $query->orWhere('content', 'like', "%{$filter}%");
             })
-            ->orderBy('created_at', 'asc')
+            ->orderBy('date', 'desc')
             ->get();
 
         return (new DocumentCollectionTransformer($models))->transform();

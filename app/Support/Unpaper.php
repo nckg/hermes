@@ -21,7 +21,7 @@ class Unpaper
     {
         $process = new Process(array_merge([$this->binPath], [], [$file, '-']));
         $process->run();
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new \Exception("Duuuuuuuh");
         }
     }

@@ -1,23 +1,15 @@
 # Hermes
 
-Index and archive all of your scanned paper documents.
+> Index and archive all of your scanned paper documents.
 
-I don't like paperwork. I hate searching for papers. This is an attempt to make my life easier.
+I'm a mess at keeping paperwork tidy. I hate searching for papers. 
+This is an attempt to make my life easier and more organized.
+
+Hermes is a [Laravel](https://laravel.com/) application that is currently in a very early development stage. 
+It only lists files from a Google Drive folder but future versions may support other filesystems. 
+There is also an implementation to OCR the files but it's not fully functional.
 
 ## Installation
-
-Hermes depends on the following:
-
-* Git
-* PHP 7.0+
-* Composer
-* MySQL / SQLite
-* Google Drive
-* ImageMagick 
-* Ghostscript
-* pdftotext
-* Tesseract
-* Unpaper
 
 #### 1. Install dependencies
 
@@ -41,6 +33,7 @@ or for Mac OS
 ```
 
 #### 3. Setup the database
+
 Log in with the root account to configure the database.
 
     mysql -uroot -p
@@ -79,12 +72,6 @@ And finally we apply the changes and exit the database.
 composer test
 ```
 
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Screenshots
-
 ## Similar Projects
 
 * [Paperless](https://github.com/danielquinn/paperless)
@@ -92,9 +79,8 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Why Hermes?
 
-![Hermes Conrad](https://media.giphy.com/media/l4pTqyJ8XMhLZ3ScE/giphy.gif)
-
-Sweet llamas of the Bahamas! Hermes Conrad is a Grade 34 Jamaican bureaucrat and the accountant at Planet Express. 
+I'm a big fan of Futurama and Hermes Conrad is a Grade 34 Jamaican bureaucrat and the accountant at Planet Express.
+Hence the name _Hermes_. 
 
 ## License
 

@@ -21,6 +21,18 @@ class Tag extends Model
             ->first();
     }
 
+    public function setAttribute($key, $value)
+    {
+        return \Illuminate\Database\Eloquent\Model::setAttribute($key, $value);
+    }
+
+    public static function bootHasSlug()
+    {
+        static::saving(function (Model $model) {
+            $model->slug = $model->generateSlug('');
+        });
+    }
+
     protected static function findOrCreateFromString(string $name, string $type = null, string $locale = null): Model
     {
         $tag = static::findFromString($name, $type, $locale);
@@ -33,18 +45,6 @@ class Tag extends Model
         }
 
         return $tag;
-    }
-
-    public function setAttribute($key, $value)
-    {
-        return \Illuminate\Database\Eloquent\Model::setAttribute($key, $value);
-    }
-
-    public static function bootHasSlug()
-    {
-        static::saving(function (Model $model) {
-            $model->slug = $model->generateSlug('');
-        });
     }
 
     protected function generateSlug(string $locale): string

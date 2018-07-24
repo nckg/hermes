@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use Spatie\PdfToText\Pdf;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Spatie\PdfToText\Pdf;
 
 class AppServiceProvider extends ServiceProvider
 {

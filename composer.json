@@ -21,6 +21,7 @@
     },
     "require-dev": {
         "filp/whoops": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.10",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
@@ -47,6 +48,8 @@
         }
     },
     "scripts": {
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 app",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 app &&  vendor/bin/php-cs-fixer fix",
         "test": "vendor/bin/phpunit",
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

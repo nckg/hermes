@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Support\FileNameParser;
 use Tests\TestCase;
+use App\Support\FileNameParser;
 
 class FileNameParserTest extends TestCase
 {

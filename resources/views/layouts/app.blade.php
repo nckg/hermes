@@ -34,23 +34,10 @@
         <div class="flex h-16 items-center mb-2">
             <div class="w-full max-w-screen-xl relative mx-auto px-6">
                 <div class="flex items-center -mx-6">
-                    <div class="lg:w-1/4 xl:w-1/5 pl-6 pr-6 lg:pr-8">
-                        <div class="flex items-center">
-                            <a href="/" class="block text-grey tracking-tight font-black hover:text-blue">
-                                {{ config("app.name") }}
-                            </a>
-                        </div>
-                    </div>
-                    <div class="lg:w-3/4 xl:w-4/5 pl-6 pr-6 lg:pr-8 flex justify-end">
-                        <a href="{{ route('logout') }}"
-                           class="text-grey hover:text-grey-darker"
-                           onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                            {{ __('Log out') }}
+                    <div class="flex items-center mx-auto">
+                        <a href="/" class="block text-grey tracking-tight font-black hover:text-blue">
+                            @svg('logo', 'h-6 fill-current')
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
                     </div>
                 </div>
             </div>

@@ -2,14 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Exceptions\DirectoryNotFoundException;
-use App\Jobs\ParseDocument;
 use App\Models\Document;
-use App\Support\FileNameParser;
 use App\Support\FileProcessor;
+use App\Support\FileNameParser;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class ParseDocumentsCommand extends Command
 {
@@ -61,7 +58,10 @@ class ParseDocumentsCommand extends Command
                     'tags' => $fileParser->tags,
                 ]);
 
-                // process for reading
+                if (config('hermes.skip_ocr')) {
+                    return;
+                }
+
                 try {
                     $readStream = Storage::getDriver()->readStream($file['path']);
                     Storage::disk('tmp')->put($file['name'], stream_get_contents($readStream));
@@ -73,7 +73,6 @@ class ParseDocumentsCommand extends Command
 
                     Storage::delete($file['name']);
                 } catch (\Exception $e) {
-
                 }
             });
     }
