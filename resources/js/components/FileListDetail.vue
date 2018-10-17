@@ -11,7 +11,6 @@
 
             <iframe :src="route('media.show', { id: value.id })"
                     ref="iframe"
-                    @load="loading = false"
                     class="w-full flex-1"></iframe>
         </div>
         <div class="w-1/4 py-6 px-4">
@@ -45,6 +44,12 @@
         data() {
             return {
                 loading: true,
+            };
+        },
+
+        mounted() {
+            this.$refs.iframe.onload = () => {
+                this.loading = false;
             };
         },
     };

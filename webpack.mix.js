@@ -32,8 +32,8 @@ mix.webpackConfig({
         ],
     },
 })
-  .js("resources/assets/js/app.js", "public/js")
-    .less('resources/assets/less/app.less', 'public/css')
+  .js("resources/js/app.js", "public/js")
+    .less('resources/less/app.less', 'public/css')
     .options({
         postCss: [
             tailwindcss('./tailwind.js'),
@@ -43,18 +43,3 @@ mix.webpackConfig({
 if (mix.inProduction()) {
   mix.version();
 }
-
-// If you want to use LESS for your preprocessing
-// mix.less('resources/assets/less/main.less', 'public/css')
-//   .options({
-//     postCss: [
-//       tailwindcss('./tailwind.js'),
-//     ]
-//   })
-
-// If you want to use SASS for preprocessing
-// mix.sass('resources/assets/sass/app.scss', 'public/css')
-//    .options({
-//       processCssUrls: false,
-//       postCss: [ tailwindcss('tailwind.js') ],
-//    });

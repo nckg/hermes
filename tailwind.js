@@ -46,88 +46,60 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
     'transparent': 'transparent',
 
-    'black': '#22292f',
-    'grey-darkest': '#3d4852',
-    'grey-darker': '#606f7b',
-    'grey-dark': '#8795a1',
-    'grey': '#b8c2cc',
-    'grey-light': '#dae1e7',
-    'grey-lighter': '#f1f5f8',
-    'grey-lightest': '#f8fafc',
     'white': '#ffffff',
 
-    'red-darkest': '#3b0d0c',
-    'red-darker': '#621b18',
-    'red-dark': '#cc1f1a',
-    'red': '#e3342f',
-    'red-light': '#ef5753',
-    'red-lighter': '#f9acaa',
-    'red-lightest': '#fcebea',
+    'grey-1': '#21252a',
+    'grey-2': '#343a40',
+    'grey-3': '#495057',
+    'grey-4': '#868e96',
+    'grey-5': '#adb5bd',
+    'grey-6': '#ced4da',
+    'grey-7': '#dee2e6',
+    'grey-8': '#e9ecef',
+    'grey-9': '#f1f3f5',
+    'grey-10': '#f8f9fa',
 
-    'orange-darkest': '#462a16',
-    'orange-darker': '#613b1f',
-    'orange-dark': '#de751f',
-    'orange': '#f6993f',
-    'orange-light': '#faad63',
-    'orange-lighter': '#fcd9b6',
-    'orange-lightest': '#fff5eb',
+    'indigo-1': '#272e5c',
+    'indigo-2': '#323b75',
+    'indigo-3': '#435094',
+    'indigo-4': '#5c6cad',
+    'indigo-5': '#6980cb',
+    'indigo-6': '#8b9dd8',
+    'indigo-7': '#a6b4e0',
+    'indigo-8': '#c5d2f4',
+    'indigo-9': '#d7dff7',
+    'indigo-10': '#e4e9f7',
 
-    'yellow-darkest': '#453411',
-    'yellow-darker': '#684f1d',
-    'yellow-dark': '#f2d024',
-    'yellow': '#ffed4a',
-    'yellow-light': '#fff382',
-    'yellow-lighter': '#fff9c2',
-    'yellow-lightest': '#fcfbeb',
+    'red-lightest' : '#FFEEEE',
+    'red-lighter' : '#FDBABA',
+    'red-light' : '#FC8686',
+    'red' : '#FA5252',
+    'red-dark' : '#E14A4A',
+    'red-darker' : '#963131',
+    'red-darkest' : '#4B1919',
 
-    'green-darkest': '#0f2f21',
-    'green-darker': '#1a4731',
-    'green-dark': '#1f9d55',
-    'green': '#38c172',
-    'green-light': '#51d88a',
-    'green-lighter': '#a2f5bf',
-    'green-lightest': '#e3fcec',
+    'cyan-lightest' : '#EBFAFB',
+    'cyan-lighter' : '#B0E9F1',
+    'cyan-light' : '#75D9E6',
+    'cyan' : '#3AC9DB',
+    'cyan-dark' : '#34B5C5',
+    'cyan-darker' : '#237983',
+    'cyan-darkest' : '#113C42',
 
-    'teal-darkest': '#0d3331',
-    'teal-darker': '#20504f',
-    'teal-dark': '#38a89d',
-    'teal': '#4dc0b5',
-    'teal-light': '#64d5ca',
-    'teal-lighter': '#a0f0ed',
-    'teal-lightest': '#e8fffe',
+    'yellow-lightest' : '#FFFBEB',
+    'yellow-lighter' : '#FFEEB1',
+    'yellow-light' : '#FFE176',
+    'yellow' : '#FFD43B',
+    'yellow-dark' : '#E6BF35',
+    'yellow-darker' : '#997F23',
+    'yellow-darkest' : '#4D4012',
 
-    'blue-darkest': '#12283a',
-    'blue-darker': '#1c3d5a',
-    'blue-dark': '#2779bd',
-    'blue': '#3490dc',
-    'blue-light': '#6cb2eb',
-    'blue-lighter': '#bcdefa',
-    'blue-lightest': '#eff8ff',
+    get indigo() { return this['indigo-5']; },
+    get grey() { return this['grey-5']; },
 
-    'indigo-darkest': '#191e38',
-    'indigo-darker': '#2f365f',
-    'indigo-dark': '#5661b3',
-    'indigo': '#6574cd',
-    'indigo-light': '#7886d7',
-    'indigo-lighter': '#b2b7ff',
-    'indigo-lightest': '#e6e8ff',
-
-    'purple-darkest': '#21183c',
-    'purple-darker': '#382b5f',
-    'purple-dark': '#794acf',
-    'purple': '#9561e2',
-    'purple-light': '#a779e9',
-    'purple-lighter': '#d6bbfc',
-    'purple-lightest': '#f3ebff',
-
-    'pink-darkest': '#451225',
-    'pink-darker': '#6f213f',
-    'pink-dark': '#eb5286',
-    'pink': '#f66d9b',
-    'pink-light': '#fa7ea8',
-    'pink-lighter': '#ffbbca',
-    'pink-lightest': '#ffebef',
-}
+    get primary() { return this.indigo; },
+    get secondary() { return this.grey; },
+};
 
 module.exports = {
 
@@ -257,8 +229,6 @@ module.exports = {
         'xl': '1.25rem',    // 20px
         '2xl': '1.5rem',    // 24px
         '3xl': '1.875rem',  // 30px
-        '4xl': '2.25rem',   // 36px
-        '5xl': '3rem',      // 48px
     },
 
 
@@ -277,15 +247,11 @@ module.exports = {
     */
 
     fontWeights: {
-        'hairline': 100,
-        'thin': 200,
         'light': 300,
         'normal': 400,
         'medium': 500,
         'semibold': 600,
         'bold': 700,
-        'extrabold': 800,
-        'black': 900,
     },
 
 
@@ -305,7 +271,6 @@ module.exports = {
         'none': 1,
         'tight': 1.25,
         'normal': 1.5,
-        'loose': 2,
     },
 
 
@@ -324,7 +289,6 @@ module.exports = {
     tracking: {
         'tight': '-0.05em',
         'normal': '0',
-        'wide': '0.05em',
     },
 
 
@@ -397,8 +361,6 @@ module.exports = {
         default: '1px',
         '0': '0',
         '2': '2px',
-        '4': '4px',
-        '8': '8px',
     },
 
 
@@ -419,7 +381,7 @@ module.exports = {
     |
     */
 
-    borderColors: global.Object.assign({ default: colors['grey-light'] }, colors),
+    borderColors: global.Object.assign({ default: colors['grey-6'] }, colors),
 
 
     /*
@@ -654,10 +616,6 @@ module.exports = {
         '8': '2rem',
         '10': '2.5rem',
         '12': '3rem',
-        '16': '4rem',
-        '20': '5rem',
-        '24': '6rem',
-        '32': '8rem',
     },
 
 
@@ -689,10 +647,6 @@ module.exports = {
         '8': '2rem',
         '10': '2.5rem',
         '12': '3rem',
-        '16': '4rem',
-        '20': '5rem',
-        '24': '6rem',
-        '32': '8rem',
     },
 
 
@@ -885,7 +839,7 @@ module.exports = {
         maxWidth: ['responsive'],
         minHeight: ['responsive'],
         minWidth: ['responsive'],
-        negativeMargin: ['responsive'],
+        negativeMargin: [],
         opacity: ['responsive'],
         outline: ['focus'],
         overflow: ['responsive'],
@@ -896,7 +850,7 @@ module.exports = {
         shadows: ['responsive', 'hover', 'focus'],
         svgFill: [],
         svgStroke: [],
-        tableLayout: ['responsive'],
+        tableLayout: [],
         textAlign: ['responsive'],
         textColors: ['responsive', 'hover', 'focus'],
         textSizes: ['responsive'],
@@ -930,6 +884,18 @@ module.exports = {
             // center: true,
             // padding: '1rem',
         }),
+        function({ addUtilities }) {
+            const newUtilities = {
+                '.skew-10deg': {
+                    transform: 'skewY(-10deg)',
+                },
+                '.skew-15deg': {
+                    transform: 'skewY(-15deg)',
+                },
+            }
+
+            addUtilities(newUtilities)
+        }
     ],
 
 

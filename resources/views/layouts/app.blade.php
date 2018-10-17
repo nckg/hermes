@@ -25,17 +25,17 @@
     </script>
 
 </head>
-<body class="font-source-sans antialiased leading-tight bg-grey-lightest @yield('bodyClass')">
+<body class="font-source-sans antialiased leading-tight bg-grey-10 @yield('bodyClass')">
     <div id="app"
          class="min-h-screen flex flex-col min-w-md cloak-fade"
          v-cloak>
 
         @auth
-        <div class="flex h-16 items-center mb-2">
+        <div class="heading flex h-48 items-center mb-2 bg-indigo-3 pb-12 relative overflow-hidden">
             <div class="w-full max-w-screen-xl relative mx-auto px-6">
                 <div class="flex items-center -mx-6">
                     <div class="flex items-center mx-auto">
-                        <a href="/" class="block text-grey tracking-tight font-black hover:text-blue">
+                        <a href="/" class="block text-white tracking-tight font-black hover:text-blue">
                             @svg('logo', 'h-6 fill-current')
                         </a>
                     </div>
@@ -43,7 +43,7 @@
             </div>
         </div>
         @endauth
-        <div class="flex">
+        <div class="flex z-20">
             <div class="w-full max-w-screen-xl mx-auto px-6 mb-12">
                 @yield('content')
             </div>
