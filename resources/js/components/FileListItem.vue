@@ -1,73 +1,72 @@
 <template>
-    <div>
-        <file-list-detail v-model="item"
-                          v-if="detail"
-                          @close="detail = false"
-                          class="fixed overflow-hidden pin bg-white flex h-screen"></file-list-detail>
-
-        <div class="max-w-sm rounded overflow-hidden shadow-lg">
-            <div class="w-full h-24 bg-indigo-2 relative">
-                <button v-if="!item.selected"
-                        class="absolute pin-r pin-t mt-4 mr-4 outline-none focus:outline-none border-0 text-grey hover:text-cyan"
-                        @click="select">
-                    <icon-plus-circle class="w-6 h-6 fill-current"></icon-plus-circle>
-                </button>
-                <button v-else
-                        class="absolute pin-r pin-t mt-4 mr-4 outline-none focus:outline-none border-0 text-cyan"
-                        @click="deselect">
-                    <icon-check-circle class="w-6 h-6 fill-current"></icon-check-circle>
-                </button>
-            </div>
-            <div class="px-6 py-4">
-                <a class="font-bold text-lg mb-2 hover:text-indigo-1 cursor-pointer"
-                   @click="detail = !detail">
-                    {{ value.title }}
-                </a>
-                <div class="flex mt-2">
-                    <p class="text-sm text-grey-4 flex items-center mr-4">
-                        <icon-calendar class="fill-current text-grey w-4 h-4 mr-2 -mt-px"></icon-calendar>
-                        <span>{{ value.date }}</span>
-                    </p>
-                    <p class="text-sm text-grey-4 flex items-center">
-                        <icon-building class="fill-current text-grey w-4 h-4 mr-2 -mt-px"></icon-building>
-                        <span>{{ value.sender }}</span>
-                    </p>
+    <div class="flex rounded w-full overflow-hidden shadow bg-white">
+        <div class="w-48 h-full bg-brand-darkest flex-none relative">
+            <img :src="imageSrc" class="block w-48 h-full object-contain" />
+        </div>
+        <div class="flex flex-col flex-1 px-6 py-4">
+            <a class="font-bold mb-2 hover:text-indigo-1 cursor-pointer"
+               @click="$emit('select', value)">
+                {{ value.title }}
+            </a>
+            <div class="flex justify-between text-grey-dark text-sm items-center mb-4">
+                <div class="flex items-center">
+                    <icon-building class="fill-current w-4 h-6 mr-1"></icon-building> {{ value.sender }}
+                </div>
+                <div class="flex items-center">
+                    <icon-calendar class="fill-current w-4 h-6 mr-1"></icon-calendar> {{ value.date }}
                 </div>
             </div>
-            <div class="px-6 py-4">
-                <tag
+            <div>
+                <button
+                    class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm text-grey-darker mr-2 mb-2 cursor-pointer hover:bg-indigo-9 hover:text-indigo-3"
                     v-for="(tag, index) in value.tags"
-                    :key="index"
-                    v-model="value.tags[index]">
-                </tag>
+                    :key="index">
+                    {{ tag.name }}
+                </button>
+            </div>
+            <div class="flex mt-auto justify-between">
+                <button
+                    v-if="!item.selected"
+                    class="outline-none focus:outline-none border-0 text-grey hover:text-brand"
+                    @click="select">
+                    <icon-check-circle class="w-6 h-6 fill-current"></icon-check-circle>
+                </button>
+                <button
+                    v-else
+                    class="outline-none focus:outline-none border-0 text-brand"
+                    @click="deselect">
+                    <icon-check-circle class="w-6 h-6 fill-current"></icon-check-circle>
+                </button>
+                <a
+                    :href="route('media.show', { id: value.id, download: true })"
+                    class="w-6 h-6 text-grey hover:text-brand-dark">
+                    <icon-download class="w-6 h-6 fill-current"></icon-download>
+                </a>
             </div>
         </div>
+    </div>
 
-        <!--<div-->
-            <!--class="flex rounded overflow-hidden shadow-md bg-white mb-6 border-2 border-white"-->
-            <!--:class="{ 'border-primary': item.selected }">-->
-            <!--<div class="flex pl-6 items-center">-->
+    <!--<div-->
+        <!--class="flex rounded overflow-hidden shadow-md bg-white mb-6 border-2 border-white"-->
+        <!--:class="{ 'border-primary': item.selected }">-->
+        <!--<div class="flex pl-6 items-center">-->
 
-            <!--</div>-->
-            <!--<div class="flex-1">-->
-                <!--<div class="px-6 pt-4">-->
+        <!--</div>-->
+        <!--<div class="flex-1">-->
+            <!--<div class="px-6 pt-4">-->
 
 
-                    <!--<div class="flex mt-1">-->
+                <!--<div class="flex mt-1">-->
 
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="px-6 py-4">-->
                 <!--</div>-->
             <!--</div>-->
-            <!--<div class="flex px-6 items-center">-->
-                <!--<a :href="route('media.show', { id: value.id, download: true })"-->
-                   <!--class="w-6 h-6 text-grey hover:text-blue-dark">-->
-                    <!--<icon-download class="w-6 h-6 fill-current"></icon-download>-->
-                <!--</a>-->
+            <!--<div class="px-6 py-4">-->
             <!--</div>-->
         <!--</div>-->
-    </div>
+        <!--<div class="flex px-6 items-center">-->
+
+        <!--</div>-->
+    <!--</div>-->
 </template>
 
 <script>
@@ -76,14 +75,12 @@
     import IconPlusCircle from '../../svg/icon-plus-circle.svg';
     import IconCheckCircle from '../../svg/icon-check-circle.svg';
     import IconDownload from '../../svg/icon-download.svg';
-    import FileListDetail from "./FileListDetail";
     import Tag from './Tag';
 
     export default {
         props: ['value'],
 
         components: {
-            FileListDetail,
             IconCalendar,
             IconBuilding,
             IconPlusCircle,
@@ -94,9 +91,14 @@
 
         data() {
             return {
-                detail: false,
                 item: this.value,
             };
+        },
+
+        computed: {
+            imageSrc() {
+                return `/storage/${this.item.uid}.jpg`;
+            },
         },
 
         methods: {

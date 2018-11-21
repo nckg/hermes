@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\ProcessFile;
 use App\Models\Document;
 use App\Support\FileProcessor;
 use App\Support\FileNameParser;
@@ -43,37 +44,29 @@ class ParseDocumentsCommand extends Command
     {
         // get directory
         $files = collect(Storage::listContents('/', false))
+            // Only list files
             ->where('type', '=', 'file')
+            // Remove documents that exist in the database
             ->filter(function ($file) {
                 return Document::where('uid', $file['basename'])->count() == 0;
             })
+            // Parse each document
             ->each(function ($file) {
                 $this->info($file['filename']);
-                $fileParser = FileNameParser::parse($file['filename']);
-                $document = Document::create([
-                    'uid' => $file['basename'],
-                    'title' => $fileParser->title,
-                    'sender' => $fileParser->sender,
-                    'date' => $fileParser->date,
-                    'tags' => $fileParser->tags,
-                ]);
 
-                if (config('hermes.skip_ocr')) {
-                    return;
-                }
-
-                try {
-                    $readStream = Storage::getDriver()->readStream($file['path']);
-                    Storage::disk('tmp')->put($file['name'], stream_get_contents($readStream));
-
-                    $processor = app()->make(FileProcessor::class);
-                    $text = $processor->process(storage_path('tmp') . DIRECTORY_SEPARATOR . $file['name']);
-
-                    $document->update(['content' => $text]);
-
-                    Storage::delete($file['name']);
-                } catch (\Exception $e) {
-                }
+                ProcessFile::dispatch($file);
+//                try {
+//                    $readStream = Storage::getDriver()->readStream($file['path']);
+//                    Storage::disk('tmp')->put($file['name'], stream_get_contents($readStream));
+//
+//                    $processor = app()->make(FileProcessor::class);
+//                    $text = $processor->process(storage_path('tmp') . DIRECTORY_SEPARATOR . $file['name']);
+//
+//                    $document->update(['content' => $text]);
+//
+//                    Storage::delete($file['name']);
+//                } catch (\Exception $e) {
+//                }
             });
     }
 }

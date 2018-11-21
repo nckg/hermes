@@ -25,29 +25,31 @@
     </script>
 
 </head>
-<body class="font-source-sans antialiased leading-tight bg-grey-10 @yield('bodyClass')">
+<body class="font-source-sans antialiased leading-tight bg-grey-lighter @yield('bodyClass')">
     <div id="app"
-         class="min-h-screen flex flex-col min-w-md cloak-fade"
+         class="min-h-screen flex flex-col cloak-fade"
          v-cloak>
 
         @auth
-        <div class="heading flex h-48 items-center mb-2 bg-indigo-3 pb-12 relative overflow-hidden">
-            <div class="w-full max-w-screen-xl relative mx-auto px-6">
-                <div class="flex items-center -mx-6">
-                    <div class="flex items-center mx-auto">
-                        <a href="/" class="block text-white tracking-tight font-black hover:text-blue">
-                            @svg('logo', 'h-6 fill-current')
-                        </a>
+            <header class="mx-auto w-full px-8 py-4 flex">
+                <div class="relative flex flex-1 max-w-12">
+                    <search
+                        class=" bg-grey-lighter focus:bg-white border-2 border-transparent focus:border-brand rounded flex flex-1 py-4 pl-12 text-grey-darker focus:outline-none">
+                        @input="
+                    </search>
+
+                    <div class="pointer-events-none absolute pin-y pin-l pl-3 flex items-center">
+                        @svg("icon-search", "fill-current pointer-events-none text-grey-darker w-6 h-6")
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="ml-auto pl-8 py-4 flex items-center">
+                    <a href="#" class="text-grey ml-auto hover:text-brand">Log out</a>
+                </div>
+            </header>
         @endauth
-        <div class="flex z-20">
-            <div class="w-full max-w-screen-xl mx-auto px-6 mb-12">
-                @yield('content')
-            </div>
-        </div>
+
+        @yield('content')
+
     </div>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->

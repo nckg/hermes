@@ -5,6 +5,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 import FileList from './components/FileList.vue';
+import FileListDetail from './components/FileListDetail.vue';
+import Search from './components/Search.vue';
+import Hub from './lib/Hub';
 
 require('./bootstrap');
 
@@ -23,6 +26,8 @@ Vue.mixin({
 });
 
 Vue.component('file-list', FileList);
+Vue.component('file-list-detail', FileListDetail);
+Vue.component('search', Search);
 
 Vue.component('tags-input', {
     props: ['value'],
@@ -44,6 +49,7 @@ Vue.component('tags-input', {
             this.$emit('input', this.value.filter(t => t !== tag))
         },
     },
+
     render() {
         return this.$scopedSlots.default({
             tags: this.value,
@@ -68,4 +74,16 @@ Vue.component('tags-input', {
 
 const app = new Vue({
     el: '#app',
+
+    data() {
+        return {
+            file: null,
+        };
+    },
+
+    created() {
+        Hub.$on('hermes:detail', (value) => {
+            this.file = value;
+        });
+    }
 });

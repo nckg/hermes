@@ -7,7 +7,7 @@ use Spatie\PdfToText\Pdf;
 class FileProcessor
 {
     /**
-     * @var Pdf
+     * @var Base64Pdf
      */
     private $pdfToText;
     /**
@@ -17,7 +17,7 @@ class FileProcessor
 
     /**
      * FileProcessor constructor.
-     * @param Pdf $pdfToText
+     * @param Base64Pdf $pdfToText
      * @param TextFromOCR $textFromOCR
      */
     public function __construct(Pdf $pdfToText, TextFromOCR $textFromOCR)

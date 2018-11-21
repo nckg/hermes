@@ -32,6 +32,7 @@ class DocumentCollectionTransformer
             ->map(function (Document $model) {
                 return [
                     'id' => $model->id,
+                    'uid' => $model->uid,
                     'title' => $model->title,
                     'sender' => $model->sender,
                     'tags' => $model->tags,

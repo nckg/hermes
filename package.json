@@ -13,8 +13,9 @@
         "cross-env": "^5.1",
         "laravel-mix": "^2.0",
         "laravel-mix-purgecss": "^1.0",
-        "less": "^2.7.3",
-        "less-loader": "^4.0.6"
+        "postcss-easy-import": "^3.0.0",
+        "postcss-nested": "^4.1.0",
+        "postcss-preset-env": "^6.2.0"
     },
     "dependencies": {
         "axios": "^0.18",
